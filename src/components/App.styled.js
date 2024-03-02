@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   margin: 0 auto;
   width: 60%;
   padding: 20px;

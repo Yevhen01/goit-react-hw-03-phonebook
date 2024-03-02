@@ -1,24 +1,24 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const SearchWrapper = styled.div`
+export const FilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 `;
 
-export const SearchLabel = styled.label`
+export const Label = styled.label`
   color: #474f7a;
   font-size: 18px;
   font-weight: 700;
 `;
 
-export const SearchInputBox = styled.input`
+export const Input = styled.input`
   padding: 10px;
-  background-color: #8e7ab5;
+  background-color: #ffd0ec;
   border: none;
   outline: none;
-  color: #fefbf6;
+  color: #474f7a;
   font-size: 16px;
   width: 50%;
 `;

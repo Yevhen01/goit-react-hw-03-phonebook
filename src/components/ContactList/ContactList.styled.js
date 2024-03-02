@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const ContactListWrapper = styled.ul`
+export const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -9,13 +9,13 @@ export const ContactListWrapper = styled.ul`
   padding: 0;
 `;
 
-export const ContactLiItem = styled.li`
+export const Li = styled.li`
   color: #474f7a;
   font-size: 16px;
   position: relative;
 `;
 
-export const DelBtn = styled.button`
+export const Btn = styled.button`
   padding: 8px;
   width: 15%;
   border: none;
@@ -33,18 +33,16 @@ export const DelBtn = styled.button`
   &:hover {
     background-color: #fff3cf;
     color: #81689d;
-    border-top: 0.5px solid #81689d;
-    border-bottom: 0.5px solid #81689d;
   }
 `;
 
-export const ContactName = styled.span`
+export const Name = styled.span`
   margin-right: 15px;
   font-size: 17px;
   font-weight: 500;
 `;
 
-export const ContactNumber = styled.span`
+export const Number = styled.span`
   color: #81689d;
   font-size: 17px;
   font-weight: 500;

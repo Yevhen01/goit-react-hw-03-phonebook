@@ -1,26 +1,21 @@
-import React from 'react';
-import { nanoid } from 'nanoid';
+import { Component } from "react";
+import { nanoid } from "nanoid";
+import ContactForm from "./ContactForm/ContactForm";
+import Filter from "./Filter/Filter";
+import ContactList from "./ContactList/ContactList";
+import contacts from "../data/contacts.json";
+import { Wrapper, Title, SubTitle } from "./App.styled";
 
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-
-// import { Container, Title, SubTitle } from './App.styled';
-
-import { Container, Title, SubTitle } from './App.styled';
-
-import contacts from './data/contacts.json';
-
-class App extends React.Component {
+class App extends Component {
   state = {
     contacts,
-    filter: '',
+    filter: "",
   };
 
   componentDidMount() {
-    const data = localStorage.getItem('phonebook');
+    const data = localStorage.getItem("phonebook");
     const contacts = JSON.parse(data);
-
+    // contacts && contacts.length
     if (contacts?.length) {
       this.setState({
         contacts,
@@ -30,22 +25,19 @@ class App extends React.Component {
 
   componentDidUpdate() {
     const { contacts } = this.state;
-    localStorage.setItem('phonebook', JSON.stringify(contacts));
+    localStorage.setItem("phonebook", JSON.stringify(contacts));
   }
 
-  addContact = data => {
+  addContact = (data) => {
     const { contacts } = this.state;
-
-    const filterContact = contacts.find(
-      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+    const dublicate = contacts.find(
+      (contact) => contact.name.toLowerCase() === data.name.toLowerCase()
     );
-
-    if (filterContact) {
+    if (dublicate) {
       alert(`${data.name} is already in contacts!`);
       return;
     }
-
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const { contacts } = prevState;
       const { name, number } = data;
       const newContact = {
@@ -59,22 +51,21 @@ class App extends React.Component {
     });
   };
 
-  removeContact = id => {
+  removeContact = (id) => {
     this.setState(({ contacts }) => {
       return {
-        contacts: contacts.filter(item => item.id !== id),
+        contacts: contacts.filter((item) => item.id !== id),
       };
     });
   };
 
   getFilteredContacts() {
     const { filter, contacts } = this.state;
-    // checking for empty string
+    //проверка на пустую строку
     if (!filter) {
       return contacts;
     }
     const filterValue = filter.toLowerCase();
-
     const filteredContacts = contacts.filter(({ name }) => {
       const nameValue = name.toLowerCase();
       return nameValue.includes(filterValue);
@@ -82,25 +73,24 @@ class App extends React.Component {
     return filteredContacts;
   }
 
-  handleSearch = ({ target }) => {
+  handleFilter = ({ target }) => {
     this.setState({
-      search: target.value,
+      filter: target.value,
     });
   };
 
   render() {
-    const { handleSearch, removeContact, addContact } = this;
+    const { handleFilter, removeContact, addContact } = this;
     const contacts = this.getFilteredContacts();
     return (
-      <Container>
+      <Wrapper>
         <Title>Phonebook</Title>
         <ContactForm onSubmit={addContact} />
         <SubTitle>Contacts</SubTitle>
-        <Filter handleFilter={handleSearch} />
+        <Filter handleFilter={handleFilter} />
         <ContactList contacts={contacts} removeContact={removeContact} />
-      </Container>
+      </Wrapper>
     );
   }
 }
-
 export default App;

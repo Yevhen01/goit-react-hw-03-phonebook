@@ -1,19 +1,21 @@
-import PropTypes from 'prop-types';
-import { SearchInputBox, SearchLabel, SearchWrapper } from './Filter.styled';
+import PropTypes from "prop-types";
+import { Label, Input } from "./Filter.styled";
 
-export const Filter = ({ handleFilter }) => {
+const Filter = ({ handleFilter }) => {
   return (
-    <SearchWrapper>
-      <SearchLabel>Find contacts by name</SearchLabel>
-      <SearchInputBox
+    <>
+      <Label htmlFor="">Find contacts by name</Label>
+      <Input
         name="filter"
         onChange={handleFilter}
         type="text"
-        placeholder="Search for a contact"
+        placeholder="Сontact search ..."
       />
-    </SearchWrapper>
+    </>
   );
 };
+
+export default Filter;
 
 Filter.propTypes = {
   handleFilter: PropTypes.func.isRequired,

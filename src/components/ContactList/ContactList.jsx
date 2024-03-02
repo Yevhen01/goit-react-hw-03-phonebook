@@ -1,25 +1,20 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { Li, Ul, Btn, Name, Number } from "./ContactList.styled";
 
-import {
-  ContactListWrapper,
-  ContactLiItem,
-  ContactName,
-  ContactNumber,
-  DelBtn,
-} from './ContactList.styled';
-
-export const ContactList = ({ contacts, removeContact }) => {
+const ContactList = ({ contacts, removeContact }) => {
   const elements = contacts.map(({ id, name, number }) => (
-    <ContactLiItem key={id}>
-      <ContactName>{name} :</ContactName>
-      <ContactNumber>{number}</ContactNumber>
-      <DelBtn type="button" onClick={() => removeContact(id)}>
+    <Li key={id}>
+      <Name>{name} :</Name>
+      <Number>{number}</Number>
+      <Btn type="button" onClick={() => removeContact(id)}>
         Delete
-      </DelBtn>
-    </ContactLiItem>
+      </Btn>
+    </Li>
   ));
-  return <ContactListWrapper>{elements}</ContactListWrapper>;
+  return <Ul>{elements}</Ul>;
 };
+
+export default ContactList;
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
